@@ -13,7 +13,7 @@ function AdminAddRecipe({ userRole, onLogout }) {
   const [cookingTime, setCookingTime] = useState("");
   const [difficulty, setDifficulty] = useState("Medium");
   const [servings, setServings] = useState("");
-  const [heatLevel, setHeatLevel] = useState("Medium Heat");
+  const [heatLevel] = useState("Medium Heat");
   const [rating, setRating] = useState("4.5");
   const [message, setMessage] = useState("");
   const [imagePreview, setImagePreview] = useState("");
