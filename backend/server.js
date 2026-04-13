@@ -1061,15 +1061,20 @@ TEXT:
 // CREATE USER (NO HASHING)
 app.post("/create-user", async (req, res) => {
   try {
+    console.log("Signup body:", req.body);
+
     const { name, email, password, role } = req.body;
 
-    const normalizedEmail = String(email || "").trim().toLowerCase();
-    if (!normalizedEmail) {
-      return res.status(400).json({ error: "Email is required" });
+    // ✅ Validation
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "All fields required" });
     }
 
-    // Check if user already exists
-    const existingUser = await findUserByEmailInsensitive(normalizedEmail);
+    const normalizedEmail = email.trim().toLowerCase();
+
+    // ✅ Simple DB check
+    const existingUser = await User.findOne({ email: normalizedEmail });
+
     if (existingUser) {
       return res.status(400).json({ error: "User already exists" });
     }
@@ -1077,15 +1082,17 @@ app.post("/create-user", async (req, res) => {
     const newUser = new User({
       name,
       email: normalizedEmail,
-      password, // plain text
+      password,
       role: role || "user"
     });
 
     await newUser.save();
+
     res.json({ message: "User created successfully" });
+
   } catch (err) {
-    console.error("Signup error:", err);
-    res.status(500).json({ error: "Server error during signup" });
+    console.error("Signup error FULL:", err);
+    res.status(500).json({ error: err.message });
   }
 });
 
