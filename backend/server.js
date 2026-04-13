@@ -16,7 +16,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -802,20 +802,19 @@ const getGeminiClient = async () => {
   }
 };
 
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: [
-    'Content-Type', 
-    'Authorization', 
-    'X-Requested-With',
-    'cache-control'  
-  ],
-  optionsSuccessStatus: 200
-};
+const app = express();
 
-app.use(cors(corsOptions));
+// ✅ ONLY THIS CORS
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://my-personal-chef-pi.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  credentials: true
+}));
+
+app.use(express.json());
 
 
 const escapeRegex = (value) => String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
