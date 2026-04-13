@@ -11,6 +11,18 @@ const { YoutubeTranscript } = require("youtube-transcript");
 const User = require("./models/User");
 const Recipe = require("./models/Recipe");
 const connectDB = require("./db");
+const app = express();
+
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://my-personal-chef-pi.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  credentials: true
+}));
+
+app.use(express.json());
 
 dotenv.config();
 connectDB();
@@ -802,7 +814,7 @@ const getGeminiClient = async () => {
   }
 };
 
-const app = express();
+
 
 // ✅ ONLY THIS CORS
 app.use(cors({
