@@ -1,8 +1,6 @@
 console.log("server.js file loaded");
 
-const cors = require("cors");
 const dotenv = require("dotenv");
-const express = require("express");
 const https = require("https");
 const zlib = require("zlib");
 const mongoose = require("mongoose");
@@ -12,6 +10,10 @@ const User = require("./models/User");
 const Recipe = require("./models/Recipe");
 const connectDB = require("./db");
 
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
 
 app.use(cors({
   origin: [
@@ -27,7 +29,6 @@ app.use(express.json());
 dotenv.config();
 connectDB();
 
-const app = express();
 
 app.use(express.json());
 
