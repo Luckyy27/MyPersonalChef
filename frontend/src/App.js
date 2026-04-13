@@ -1,7 +1,6 @@
-//import { Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
-//import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
@@ -44,125 +43,129 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen text-white bg-gradient-to-b from-[#0f1f0b] via-[#132a0e] to-[#0b1608]">
-      <Routes>
-        {/* LOGIN */}
-        <Route
-          path="/"
-          element={
-            !role ? (
-              <Login onLogin={handleLogin} />
-            ) : role === "admin" ? (
-              <Navigate to="/admin" />
-            ) : (
-              <Home userRole={role} onLogout={handleLogout} />
-            )
-          }
-        />
+    <Router>
+      <div className="min-h-screen text-white bg-gradient-to-b from-[#0f1f0b] via-[#132a0e] to-[#0b1608]">
+        <Routes>
 
-        {/* SIGNUP */}
-        <Route path="/signup" element={<Signup />} />
+          {/* LOGIN */}
+          <Route
+            path="/"
+            element={
+              !role ? (
+                <Login onLogin={handleLogin} />
+              ) : role === "admin" ? (
+                <Navigate to="/admin" />
+              ) : (
+                <Home userRole={role} onLogout={handleLogout} />
+              )
+            }
+          />
 
-        {/* HOME PAGE FOR LOGGED IN USERS */}
-        <Route
-          path="/home"
-          element={
-            role ? (
-              <Home userRole={role} onLogout={handleLogout} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+          {/* SIGNUP */}
+          <Route path="/signup" element={<Signup />} />
 
-        {/* FAVORITES */}
-        <Route
-          path="/favorites"
-          element={
-            role ? (
-              <Favorites userRole={role} onLogout={handleLogout} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+          {/* HOME */}
+          <Route
+            path="/home"
+            element={
+              role ? (
+                <Home userRole={role} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
 
-        {/* PANTRY */}
-        <Route
-          path="/pantry"
-          element={
-            role ? (
-              <Pantry userRole={role} onLogout={handleLogout} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+          {/* FAVORITES */}
+          <Route
+            path="/favorites"
+            element={
+              role ? (
+                <Favorites userRole={role} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
 
-        {/* RECIPES */}
-        <Route
-          path="/recipes"
-          element={
-            role ? (
-              <Recipes userRole={role} onLogout={handleLogout} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+          {/* PANTRY */}
+          <Route
+            path="/pantry"
+            element={
+              role ? (
+                <Pantry userRole={role} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
 
-        {/* RECIPE DETAIL */}
-        <Route
-          path="/recipe/:id"
-          element={
-            role ? (
-              <RecipeDetail userRole={role} onLogout={handleLogout} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+          {/* RECIPES */}
+          <Route
+            path="/recipes"
+            element={
+              role ? (
+                <Recipes userRole={role} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
 
-        {/* ADMIN PAGE */}
-        <Route
-          path="/admin"
-          element={
-            role === "admin" ? (
-              <AdminAddRecipe userRole={role} onLogout={handleLogout} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+          {/* RECIPE DETAIL */}
+          <Route
+            path="/recipe/:id"
+            element={
+              role ? (
+                <RecipeDetail userRole={role} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
 
-        {/* ADMIN VIEW RECIPES */}
-        <Route
-          path="/view-recipes"
-          element={
-            role === "admin" ? (
-              <ViewRecipes userRole={role} onLogout={handleLogout} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+          {/* ADMIN */}
+          <Route
+            path="/admin"
+            element={
+              role === "admin" ? (
+                <AdminAddRecipe userRole={role} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
 
-        {/* ADMIN FEEDBACK */}
-        <Route
-          path="/admin/feedback"
-          element={
-            role === "admin" ? (
-              <AdminFeedback userRole={role} onLogout={handleLogout} />
-            ) : (
-              <Navigate to="/" />
-            )
-          }
-        />
+          {/* ADMIN VIEW RECIPES */}
+          <Route
+            path="/view-recipes"
+            element={
+              role === "admin" ? (
+                <ViewRecipes userRole={role} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
 
-        {/* CATCH ALL - REDIRECT TO HOME */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </div>
+          {/* ADMIN FEEDBACK */}
+          <Route
+            path="/admin/feedback"
+            element={
+              role === "admin" ? (
+                <AdminFeedback userRole={role} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+
+          {/* DEFAULT */}
+          <Route path="*" element={<Navigate to="/" />} />
+
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
