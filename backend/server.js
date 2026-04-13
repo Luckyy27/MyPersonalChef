@@ -11,7 +11,7 @@ const { YoutubeTranscript } = require("youtube-transcript");
 const User = require("./models/User");
 const Recipe = require("./models/Recipe");
 const connectDB = require("./db");
-const app = express();
+
 
 app.use(cors({
   origin: [
