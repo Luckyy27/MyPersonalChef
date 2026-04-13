@@ -32,7 +32,7 @@ function RecipeDetail({ userRole, onLogout }) {
     }
   };
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/recipes/${id}`)
+    fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/recipes/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setRecipe(data);
@@ -44,7 +44,7 @@ function RecipeDetail({ userRole, onLogout }) {
     const userEmail = localStorage.getItem("userEmail");
     if (userEmail) {
       const normalizedEmail = String(userEmail || "").trim().toLowerCase();
-      fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/favorites/${encodeURIComponent(normalizedEmail)}`)
+      fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/favorites/${encodeURIComponent(normalizedEmail)}`)
         .then((res) => res.json())
         .then((data) => {
           const favoriteIds = data.favorites || [];
@@ -54,7 +54,7 @@ function RecipeDetail({ userRole, onLogout }) {
           if (favoriteIds.length > 0) {
             Promise.all(
               favoriteIds.slice(0, 3).map(favId =>
-                fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/recipes/${favId}`)
+                fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/recipes/${favId}`)
                   .then(res => {
                     if (!res.ok) return null;
                     return res.json().catch(() => null);
@@ -80,7 +80,7 @@ function RecipeDetail({ userRole, onLogout }) {
     try {
       if (isFavorite) {
         // Remove from favorites
-        const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/favorites/${encodeURIComponent(normalizedEmail)}/${id}`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/favorites/${encodeURIComponent(normalizedEmail)}/${id}`, {
           method: "DELETE"
         });
         if (!res.ok) {
@@ -90,7 +90,7 @@ function RecipeDetail({ userRole, onLogout }) {
         setIsFavorite(false);
       } else {
         // Add to favorites
-        const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/favorites/${encodeURIComponent(normalizedEmail)}`,
+        const res = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/favorites/${encodeURIComponent(normalizedEmail)}`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -374,7 +374,7 @@ function RecipeDetail({ userRole, onLogout }) {
             
             try {
               console.log('Submitting feedback:', feedbackData);
-              const response = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/api/feedback`, {
+              const response = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/api/feedback`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',

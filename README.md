@@ -10,7 +10,7 @@ This repository contains:
 ## Demo (Local)
 
 - Frontend: `http://localhost:3000`
-- Backend: `http://localhost:5000`
+- Backend: `https://mypersonalchef.onrender.com`
 
 ## Why this project exists
 
@@ -178,7 +178,7 @@ Admin:
 
 Base URL:
 
-- `http://localhost:5000`
+- `https://mypersonalchef.onrender.com`
 
 ### Recipes
 
@@ -319,7 +319,7 @@ The pantry input now supports comma-separated entries, so:
 
 ### Frontend can’t reach backend
 
-- Confirm backend is running at `http://localhost:5000`
+- Confirm backend is running at `https://mypersonalchef.onrender.com`
 - Confirm CORS allows `http://localhost:3000`
 
 ### Auto-Fill adds image + ingredients but not steps

@@ -56,7 +56,7 @@ function Pantry({ userRole, onLogout }) {
     setSuggestedRecipes([]); // Clear previous results
     try {
       console.log("Searching for recipes with ingredients:", pantryItems);
-      const response = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/recipes/pantry-match`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/recipes/pantry-match`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ingredients: pantryItems })

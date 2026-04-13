@@ -27,7 +27,7 @@ function Signup() {
     }
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/create-user`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/create-user`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password, role: "user" })

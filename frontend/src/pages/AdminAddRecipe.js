@@ -41,7 +41,7 @@ function AdminAddRecipe({ userRole, onLogout }) {
 
     try {
       setIsImporting(true);
-      const response = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/api/ai/import-recipe`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/api/ai/import-recipe`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -97,7 +97,7 @@ function AdminAddRecipe({ userRole, onLogout }) {
     const stepsArray = steps.split("\n").filter((item) => item.trim() !== "");
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/add-recipe`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/add-recipe`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -15,7 +15,7 @@ function Favorites({ userRole, onLogout }) {
     const normalizedEmail = String(userEmail || "").trim().toLowerCase();
 
     // Fetch favorites from backend
-    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/favorites/${encodeURIComponent(normalizedEmail)}`)
+    fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/favorites/${encodeURIComponent(normalizedEmail)}`)
       .then(async (res) => {
         if (!res.ok) {
           const msg = await res.text();
@@ -28,7 +28,7 @@ function Favorites({ userRole, onLogout }) {
         if (favoriteIds.length > 0) {
           Promise.all(
             favoriteIds.map(id =>
-              fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/recipes/${id}`)
+              fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/recipes/${id}`)
                 .then(res => {
                   if (!res.ok) return null;
                   return res.json().catch(() => null);
@@ -53,7 +53,7 @@ function Favorites({ userRole, onLogout }) {
     const normalizedEmail = String(userEmail || "").trim().toLowerCase();
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/favorites/${encodeURIComponent(normalizedEmail)}/${recipeId}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/favorites/${encodeURIComponent(normalizedEmail)}/${recipeId}`, {
         method: "DELETE"
       });
       if (!res.ok) {

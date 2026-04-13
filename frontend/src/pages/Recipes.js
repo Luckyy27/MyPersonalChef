@@ -13,7 +13,7 @@ function Recipes({ userRole, onLogout }) {
   const types = ["All", "Breakfast", "Desserts", "Fast Food", "Lunch", "Dinner", "Snacks", "Beverages", "Other"];
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/recipes`)
+    fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/recipes`)
       .then((res) => res.json())
       .then((data) => {
         const list = Array.isArray(data) ? data : [];

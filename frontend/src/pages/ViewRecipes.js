@@ -18,7 +18,7 @@ function ViewRecipes({ userRole, onLogout }) {
   }, []);
 
   const fetchRecipes = () => {
-    fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/recipes`)
+    fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/recipes`)
       .then((res) => res.json())
       .then((data) => {
         const list = Array.isArray(data) ? data : [];
@@ -43,7 +43,7 @@ function ViewRecipes({ userRole, onLogout }) {
   const handleDelete = async (recipeId) => {
     if (window.confirm("Are you sure you want to delete this recipe?")) {
       try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/recipes/${recipeId}`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/recipes/${recipeId}`, {
           method: "DELETE"
         });
         if (res.ok) {
@@ -71,7 +71,7 @@ function ViewRecipes({ userRole, onLogout }) {
       const ingredientsArray = editingRecipe.ingredients.split('\n').filter(item => item.trim() !== '');
       const stepsArray = editingRecipe.steps.split('\n').filter(item => item.trim() !== '');
 
-      const res = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/recipes/${editingRecipe._id}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/recipes/${editingRecipe._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

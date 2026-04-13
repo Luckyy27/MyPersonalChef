@@ -13,7 +13,7 @@ function AdminFeedback({ userRole, onLogout }) {
   try {
     if (initialLoad) setLoading(true);
     console.log('Fetching feedback...');
-    const response = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/api/feedback`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/api/feedback`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json'
@@ -46,7 +46,7 @@ function AdminFeedback({ userRole, onLogout }) {
   const handleStatusChange = async (id, newStatus) => {
     try {
       console.log(`Updating feedback ${id} to status:`, newStatus);
-      const response = await fetch(`${process.env.REACT_APP_API_URL || "http://localhost:5000"}/api/feedback/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || "https://mypersonalchef.onrender.com"}/api/feedback/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
